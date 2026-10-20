@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RefundFlow AI — Support Console</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <a class="brand" href="#top"><span class="brand-logo">✳</span><span><b>RefundFlow <em>AI</em></b><small>SUPPORT WORKSPACE</small></span></a>
+    <div class="nav-label">WORKSPACE</div>
+    <a class="nav active" href="#top"><span>◫</span> Overview <i></i></a>
+    <a class="nav" href="#new-request"><span>＋</span> New request</a>
+    <a class="nav" href="#activity"><span>◷</span> Activity log</a>
+    <div class="side-bottom"><div class="agent-mini"><div class="bot-icon">✦</div><div><b>Refund Agent</b><small>LangGraph workflow</small></div><span class="live-dot"></span></div><div class="side-foot"><span class="live-dot"></span> Ready for requests</div></div>
+  </aside>
+  <main class="main" id="top">
+    <header class="topbar"><div class="crumb">Workspace <span>/</span> <b>Overview</b></div><div class="top-right"><span id="apiBadge" class="api-badge checking"><i></i><span id="apiText">Checking API…</span></span><button class="icon-btn" id="refreshHealth" title="Refresh API status">↻</button><div class="avatar">RF</div></div></header>
+    <div class="content">
+      <section class="hero"><div class="hero-copy"><div class="eyebrow">✦ &nbsp; AI-POWERED CUSTOMER SUPPORT</div><h1>Refund operations,<br><span>without the busywork.</span></h1><p>Review customer requests, run your LangGraph agent, and make confident decisions in one place.</p><a href="#new-request" class="hero-link">Start a workflow <span>↗</span></a></div><div class="hero-visual"><div class="orbit orbit-a"></div><div class="orbit orbit-b"></div><div class="hero-center">✳</div><div class="float-tag tag-a">✦ Agent ready</div><div class="float-tag tag-b">♧ Human-in-the-loop</div></div></section>
+      <section class="stats"><article class="stat"><div class="stat-icon violet">⌘</div><div class="stat-label">Workflow engine</div><div class="stat-value">LangGraph</div><div class="stat-note"><span class="green">●</span> Stateful execution</div></article><article class="stat"><div class="stat-icon blue">♧</div><div class="stat-label">Review control</div><div class="stat-value">Human approval</div><div class="stat-note">You stay in control</div></article><article class="stat"><div class="stat-icon amber">◷</div><div class="stat-label">Requests this session</div><div class="stat-value" id="requestCount">0</div><div class="stat-note">Tracked in this browser session</div></article></section>
+      <section class="columns"><article class="panel request-panel" id="new-request"><div class="panel-head"><div><div class="kicker">START A WORKFLOW</div><h2>New refund request</h2><p>Tell the AI agent what the customer needs.</p></div><div class="panel-symbol">▤</div></div>
+        <form id="requestForm"><label for="apiUrl">FastAPI base URL</label><input id="apiUrl" type="url" value="http://localhost:8000" required><div class="label-row"><label for="customerMessage">Customer message</label><span>Required</span></div><textarea id="customerMessage" rows="5" required placeholder="Example: Please refund ORD-1002. My item arrived damaged…"></textarea><div class="hint">Try a demo order: <button type="button" class="sample" data-message="Please refund ORD-1002">ORD-1002</button> · <button type="button" class="sample" data-message="Please refund ORD-1001">ORD-1001</button> · <button type="button" class="sample" data-message="Please refund ORD-1003">ORD-1003</button></div><div class="form-bottom"><span>♧ &nbsp; Request processed by your API</span><button class="primary" id="submitBtn" type="submit"><span>↗</span> Run refund agent</button></div></form>
+        <div id="errorBox" class="notice error hidden" role="alert"></div><section id="resultBox" class="result hidden" aria-live="polite"></section>
+      </article>
+      <div class="right-stack"><article class="panel"><div class="panel-head small-head"><div><div class="kicker">HOW IT WORKS</div><h2>Workflow overview</h2></div></div><div class="steps"><div class="step"><div class="step-icon s-blue">▤</div><div><b>Customer request</b><p>Issue is submitted to the API.</p></div><span>01</span></div><div class="step-line"></div><div class="step"><div class="step-icon s-violet">✦</div><div><b>AI agent analysis</b><p>LangGraph runs your workflow.</p></div><span>02</span></div><div class="step-line"></div><div class="step"><div class="step-icon s-amber">♧</div><div><b>Human review</b><p>Approve or reject if interrupted.</p></div><span>03</span></div><div class="step-line"></div><div class="step"><div class="step-icon s-green">✓</div><div><b>Final response</b><p>Workflow resumes and completes.</p></div><span>04</span></div></div></article>
+      <article class="panel system-panel"><div class="system-title"><div class="system-icon">⌁</div><div><b>System status</b><p>Connection diagnostics</p></div><button id="refreshHealth2" class="mini-refresh" title="Check health">↻</button></div><div class="status-row"><span>API health endpoint</span><b id="healthValue" class="checking">Checking</b></div><div class="status-row"><span>Checkpoint store</span><b>In-memory</b></div><div class="status-row"><span>Review endpoint</span><b>/review/:thread_id</b></div></article></div></section>
+      <section class="panel activity" id="activity"><div class="activity-head"><div><div class="kicker">RECENT ACTIVITY</div><h2>Request history</h2></div><span class="count" id="historyCount">0 requests</span></div><div id="historyList" class="empty"><div class="empty-icon">◷</div><b>No requests yet</b><p>Your recent refund workflows will appear here after you run the agent.</p></div></section>
+      <footer><span>RefundFlow AI <b>·</b> LangGraph Refund Agent</span><span>Built for human-in-the-loop support</span></footer>
+    </div>
+  </main>
+</div><script src="app.js"></script>
+</body></html>
